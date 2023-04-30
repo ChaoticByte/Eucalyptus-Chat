@@ -95,6 +95,7 @@
         messageElem.appendChild(messageTypeElem);
         messageElem.appendChild(messageTextElem);
         messageHistoryContainer.appendChild(messageElem);
+        messageHistoryContainer.scrollTo(0, messageHistoryContainer.scrollHeight);
     }
 
     function disableInput() {
