@@ -6,7 +6,7 @@ A frontend for [Koala](https://bair.berkeley.edu/blog/2023/04/03/koala/) running
 
 ## Dependencies
 
-- Python3
+- Python 3.10
 - The pip packages listed in `requirements.txt`
 - A Koala model in the ggml format (should be quantized)
 
