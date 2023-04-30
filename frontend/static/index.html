@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Copyright (c) 2023 Julian Müller (ChaoticByte) -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ui/style.css">
+    <title>Eucalyptus</title>
+</head>
+<body class="flex">
+    <div class="main flex flex-column">
+        <div id="messages" class="messages flex flex-column"></div>
+        <div class="input-container flex">
+            <textarea id="text-input" class="text-input" rows="1" placeholder="Press Ctrl+Enter to send" autofocus></textarea>
+            <button id="send-btn" class="send-btn icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="M120 896V651l302-75-302-77V256l760 320-760 320Z"/></svg>
+            </button>
+        </div>
+    </div>
+    <div class="sidepanel flex flex-column">
+        <div class="max-width">Settings</div>
+        <div class="settings flex flex-column">
+            <div class="setting flex">
+                <div>max_tokens</div>
+                <div><input type="number" id="settings-max-tokens" min="16" value="100"></div>
+            </div>
+            <div class="setting flex">
+                <div>temperature</div>
+                <div><input type="number" id="settings-temperature" min="0.0" max="2.0" step="0.01" value="0.8"></div>
+            </div>
+            <div class="setting flex">
+                <div>top_p</div>
+                <div><input type="number" id="settings-top-p" min="0.0" max="1.0" step="0.01" value="0.95"></div>
+            </div>    
+        </div>
+        <div class="flex">
+            <button id="reset-history-btn" class="icon-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="m361 757 119-121 120 121 47-48-119-121 119-121-47-48-120 121-119-121-48 48 120 121-120 121 48 48ZM261 936q-24 0-42-18t-18-42V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Z"/></svg>
+            </button>
+        </div>
+    </div>
+    <script src="/ui/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+/* Copyright (c) 2023 Julian Müller (ChaoticByte) */
+
+:root {
+    --background: #1f1f1f;
+    --background2: #303030;
+    --background3: #161616;
+    --background4: #131313;
+    --button-bg: #3b3b3b;
+    --button-bg2: #4f4f4f;
+    --icon-button-fill: #ffffff;
+    --send-icon-button-fill: #29c76d;
+    --color: #fafafa;
+    --padding: .5rem;
+    --border-radius: .5rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--background);
+    color: var(--color);
+    font-family: sans-serif;
+    flex-direction: row;
+    min-height: 100vh;
+}
+
+
+input[type="number"] {
+    width: 4rem;
+}
+
+.sidepanel {
+    gap: var(--padding);
+    align-items: flex-end;
+    padding: 1rem;
+    padding-left: 0;
+    min-width: fit-content;
+}
+
+.settings {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    gap: .5rem;
+}
+
+.setting {
+    gap: .5rem;
+}
+
+.setting > div:first-child {
+    flex-grow: 1;
+}
+
+.main {
+    flex-grow: 1;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.messages {
+    gap: 1.1rem;
+    padding-bottom: var(--padding);
+    overflow-y: scroll;
+    max-height: 89vh;
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+    gap: var(--padding);
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    max-width: fit-content;
+}
+
+button {
+    padding: .5rem .7rem;
+    border: none;
+    outline: none;
+    color: var(--color);
+    background: var(--button-bg);
+    border-radius: var(--border-radius);
+    font-size: .9rem;
+}
+
+button:disabled, input:disabled, textarea:disabled {
+    opacity: 50%;
+}
+
+button:hover {
+    background: var(--button-bg2);
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.max-width {
+    width: 100%;
+}
+
+.message-bg-assistant {
+    background: var(--background2);
+}
+
+.message-bg-user {
+    background: var(--background3);
+}
+
+.message-type {
+    min-width: 3.5rem;
+    padding-left: .1rem;
+}
+
+.input-container {
+    margin-top: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+}
+
+.text-input {
+    margin: 0;
+    flex-grow: 1;
+    background-color: var(--background4);
+    border: none;
+    outline: none;
+    padding: .8rem 1.1rem;
+    border-radius: var(--border-radius);
+    color: var(--color);
+    resize: none;
+    font-size: .9rem;
+}
+
+.icon-button {
+    padding: .2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.icon-button:hover {
+    background: transparent;
+}
+
+.icon-button > svg {
+    height: 1.8rem;
+    width: auto;
+    fill: var(--icon-button-fill);
+}
+
+.icon-button:hover > svg {
+    transform: scale(1.1);
+}
+
+.send-btn > svg {
+    height: 2.2rem;
+    fill: var(--send-icon-button-fill);
+}
