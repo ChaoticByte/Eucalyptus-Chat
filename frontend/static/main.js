@@ -25,6 +25,7 @@
     const settingsMaxTokensElement = document.getElementById("settings-max-tokens");
     const settingsTemperatureElement = document.getElementById("settings-temperature");
     const settingsTopPElement = document.getElementById("settings-top-p");
+    const resetSettingsButtonElement = document.getElementById("reset-settings-btn");
     const resetHistoryButtonElement = document.getElementById("reset-history-btn");
 
     // Elements - Main
@@ -56,12 +57,24 @@
 
     // User-defined settings
 
+    const defaultSettings = {
+        max_tokens: 100,
+        temperature: 0.8,
+        top_p: 0.95
+    }
+
     function getSettings() {
         return {
             max_tokens: settingsMaxTokensElement.value,
             temperature: settingsTemperatureElement.value,
             top_p: settingsTopPElement.value
         }
+    }
+
+    function resetSettings() {
+        settingsMaxTokensElement.value = defaultSettings.max_tokens;
+        settingsTemperatureElement.value = defaultSettings.temperature;
+        settingsTopPElement.value = defaultSettings.top_p;
     }
 
     // Chat
@@ -99,12 +112,22 @@
     }
 
     function disableInput() {
+        settingsMaxTokensElement.disabled = true;
+        settingsTemperatureElement.disabled = true;
+        settingsTopPElement.disabled = true;
+        resetSettingsButtonElement.disabled = true;
+        resetHistoryButtonElement.disabled = true;
         sendButtonElement.disabled = true;
         textInputElement.disabled = true;
     }
 
     function enableInput() {
-        sendButtonElement.disabled = false;    
+        settingsMaxTokensElement.disabled = false;
+        settingsTemperatureElement.disabled = false;
+        settingsTopPElement.disabled = false;
+        resetSettingsButtonElement.disabled = false;
+        resetHistoryButtonElement.disabled = false;
+        sendButtonElement.disabled = false;
         textInputElement.disabled = false;
         // focus text input
         textInputElement.focus();
@@ -140,6 +163,7 @@
 
     // Event Listeners
     
+    resetSettingsButtonElement.addEventListener("click", resetSettings);
     resetHistoryButtonElement.addEventListener("click", resetHistory);
     sendButtonElement.addEventListener("click", chat);
     
