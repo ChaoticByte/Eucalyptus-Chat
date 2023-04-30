@@ -4,9 +4,46 @@ A frontend for [Koala](https://bair.berkeley.edu/blog/2023/04/03/koala/) running
 
 ![](misc/screenshot.png)
 
-# Third-Party Licenses
+## Dependencies
 
-## Material Design Icons
+- Python3
+- The pip packages listed in `requirements.txt`
+- A Koala model in the ggml format (should be quantized)
+
+The 7B-Model, `q4_0`-quantized, requires approx. 5 GB of RAM.
+
+## Usage
+
+To use Eucalyptus locally, start both the API-Server (`api-server.py`) and the Frontend-Server (`frontend-server.py`).  
+The default URL of the Frontend-Server is http://localhost:8080.
+
+### API Server CLI Arguments
+
+The following command-line arguments are available:
+
+* `-m` or `--model`: Specifies the path to the model file. This is required and must be provided.
+* `--host`: Specifies the address to listen on. By default, it listens on localhost.
+* `--port`: Specifies the port number to listen on. The default value is 7331.
+
+```bash
+python3 api-server.py [-h] -m MODEL [--host HOST] [--port PORT]
+```
+
+### Frontend Server CLI Arguments
+
+The following command-line options are available:
+
+* `--host`: Specifies the IP address or hostname to listen on. Defaults to "localhost".
+* `--port`: Specifies the port number to listen on. Defaults to 8080.
+* `--api`: Specifies the URL of the API server. Defaults to http://localhost:7331.
+
+```bash
+python3 frontend-server.py [-h] [--host HOST] [--port PORT] [--api API]
+```
+
+## Third-Party Licenses
+
+### Material Design Icons
 
 The file `./frontend/static/index.html` contains symbols from [Material Design Icons](https://github.com/google/material-design-icons).
 
