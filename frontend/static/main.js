@@ -111,6 +111,13 @@
         messageHistoryContainer.scrollTo(0, messageHistoryContainer.scrollHeight);
     }
 
+    function resizeInputElement() {
+        // Calculate Line height
+        textInputElement.style.removeProperty("height");
+        let newHeight = textInputElement.scrollHeight;
+        textInputElement.style.height = newHeight.toString() + "px";
+    }
+
     function disableInput() {
         settingsMaxTokensElement.disabled = true;
         settingsTemperatureElement.disabled = true;
@@ -145,6 +152,7 @@
             }
             else {
                 textInputElement.value = "";
+                resizeInputElement();
                 addMessage(input, MessageType.USER);
                 let prompt = conversation.join("");
                 let settings = getSettings();
@@ -162,11 +170,11 @@
     }
 
     // Event Listeners
-    
+
     resetSettingsButtonElement.addEventListener("click", resetSettings);
     resetHistoryButtonElement.addEventListener("click", resetHistory);
     sendButtonElement.addEventListener("click", chat);
-    
+
     textInputElement.addEventListener("keypress", e => {
         // Send via Ctrl+Enter
         if (e.key == "Enter" && e.ctrlKey) {
@@ -174,11 +182,6 @@
         }
     });
 
-    textInputElement.addEventListener("input", e => {
-        // Calculate Line height
-        textInputElement.style.removeProperty("height");
-        let newHeight = textInputElement.scrollHeight;
-        textInputElement.style.height = newHeight.toString() + "px";
-    });
+    textInputElement.addEventListener("input", resizeInputElement);
 
 })();
