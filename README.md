@@ -2,6 +2,8 @@
 
 A frontend for [Koala](https://bair.berkeley.edu/blog/2023/04/03/koala/) running on CPU with [llama.cpp](https://github.com/ggerganov/llama.cpp), using the API server library provided by [llama-cpp-python](https://github.com/abetlen/llama-cpp-python).
 
+![](misc/screenshot.png)
+
 # Third-Party Licenses
 
 ## Material Design Icons
