@@ -16,6 +16,7 @@ if __name__ == "__main__":
     # Set environment variable before importing api server
     environ["MODEL"] = args.model
     # Import api server
-    from llama_cpp.server import __main__ as server
+    from llama_cpp.server.app import create_app
     # Run
-    uvicorn.run(server.app, host=args.host, port=args.port)
+    app = create_app()
+    uvicorn.run(app, host=args.host, port=args.port)
