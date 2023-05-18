@@ -32,7 +32,23 @@
             <div class="setting flex">
                 <div>top_p</div>
                 <div><input type="number" id="settings-top-p" min="0.0" max="1.0" step="0.01" value="0.95"></div>
-            </div>    
+            </div>
+            <div class="setting flex">
+                <div>top_k</div>
+                <div><input type="number" id="settings-top-k" min="0" step="1" value="40"></div>
+            </div>
+            <div class="setting flex">
+                <div>repeat_penalty</div>
+                <div><input type="number" id="settings-repeat-penalty" min="0.0" step="0.01" value="1.1"></div>
+            </div>
+            <div class="setting flex">
+                <div>presence_penalty</div>
+                <div><input type="number" id="settings-presence-penalty" min="-2.0" max="2.0" step="0.01" value="0"></div>
+            </div>
+            <div class="setting flex">
+                <div>frequency_penalty</div>
+                <div><input type="number" id="settings-frequency-penalty" min="-2.0" max="2.0" step="0.01" value="0"></div>
+            </div>
         </div>
         <div class="flex">
             <button id="reset-settings-btn" class="icon-button">

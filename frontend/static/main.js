@@ -25,6 +25,10 @@
     const settingsMaxTokensElement = document.getElementById("settings-max-tokens");
     const settingsTemperatureElement = document.getElementById("settings-temperature");
     const settingsTopPElement = document.getElementById("settings-top-p");
+    const settingsTopKElement = document.getElementById("settings-top-k");
+    const settingsRepeatPenaltyElement = document.getElementById("settings-repeat-penalty");
+    const settingsPresencePenaltyElement = document.getElementById("settings-presence-penalty");
+    const settingsFrequencyPenaltyElement = document.getElementById("settings-frequency-penalty");
     const resetSettingsButtonElement = document.getElementById("reset-settings-btn");
     const resetHistoryButtonElement = document.getElementById("reset-history-btn");
 
@@ -41,7 +45,11 @@
             "stop": [koalaStopSequence],
             "max_tokens": settings.max_tokens,
             "temperature": settings.temperature,
-            "top_p": settings.top_p
+            "top_p": settings.top_p,
+            "top_k": settings.top_k,
+            "repeat_penalty": settings.repeat_penalty,
+            "presence_penalty": settings.presence_penalty,
+            "frequency_penalty": settings.frequency_penalty
         });
         const response = await fetch(frontend_config.api_url + "/v1/completions", {
             method: "post",
@@ -60,14 +68,22 @@
     const defaultSettings = {
         max_tokens: 100,
         temperature: 0.8,
-        top_p: 0.95
+        top_p: 0.95,
+        top_k: 40,
+        repeat_penalty: 1.1,
+        presence_penalty: 0.0,
+        frequency_penalty: 0.0
     }
 
     function getSettings() {
         return {
             max_tokens: settingsMaxTokensElement.value,
             temperature: settingsTemperatureElement.value,
-            top_p: settingsTopPElement.value
+            top_p: settingsTopPElement.value,
+            top_k: settingsTopKElement.value,
+            repeat_penalty: settingsRepeatPenaltyElement.value,
+            presence_penalty: settingsPresencePenaltyElement.value,
+            frequency_penalty: settingsFrequencyPenaltyElement.value
         }
     }
 
@@ -75,6 +91,10 @@
         settingsMaxTokensElement.value = defaultSettings.max_tokens;
         settingsTemperatureElement.value = defaultSettings.temperature;
         settingsTopPElement.value = defaultSettings.top_p;
+        settingsTopKElement.value = defaultSettings.top_k;
+        settingsRepeatPenaltyElement.value = defaultSettings.repeat_penalty;
+        settingsPresencePenaltyElement.value = defaultSettings.presence_penalty;
+        settingsFrequencyPenaltyElement.value = defaultSettings.frequency_penalty;
     }
 
     // Chat
@@ -122,6 +142,10 @@
         settingsMaxTokensElement.disabled = true;
         settingsTemperatureElement.disabled = true;
         settingsTopPElement.disabled = true;
+        settingsTopKElement.disabled = true;
+        settingsRepeatPenaltyElement.disabled = true;
+        settingsPresencePenaltyElement.disabled = true;
+        settingsFrequencyPenaltyElement.disabled = true;
         resetSettingsButtonElement.disabled = true;
         resetHistoryButtonElement.disabled = true;
         sendButtonElement.disabled = true;
@@ -132,6 +156,10 @@
         settingsMaxTokensElement.disabled = false;
         settingsTemperatureElement.disabled = false;
         settingsTopPElement.disabled = false;
+        settingsTopKElement.disabled = false;
+        settingsRepeatPenaltyElement.disabled = false;
+        settingsPresencePenaltyElement.disabled = false;
+        settingsFrequencyPenaltyElement.disabled = false;
         resetSettingsButtonElement.disabled = false;
         resetHistoryButtonElement.disabled = false;
         sendButtonElement.disabled = false;
