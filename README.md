@@ -1,6 +1,6 @@
 # Eucalyptus Chat
 
-A frontend for [Koala](https://bair.berkeley.edu/blog/2023/04/03/koala/) running on CPU with [llama.cpp](https://github.com/ggerganov/llama.cpp), using the API server library provided by [llama-cpp-python](https://github.com/abetlen/llama-cpp-python).
+A frontend for large language models like [🐨 Koala](https://bair.berkeley.edu/blog/2023/04/03/koala/) or [🦙 Vicuna](https://lmsys.org/blog/2023-03-30-vicuna/) running on CPU with [llama.cpp](https://github.com/ggerganov/llama.cpp), using the API server library provided by [llama-cpp-python](https://github.com/abetlen/llama-cpp-python).
 
 ![](misc/screenshot.png)
 
@@ -10,20 +10,29 @@ A frontend for [Koala](https://bair.berkeley.edu/blog/2023/04/03/koala/) running
 - The pip packages listed in `requirements.txt`
 - A Koala model in the ggml format (should be quantized)
 
-The 7B-Model, `q4_0`-quantized, requires approx. 5 GB of RAM.
+The 7B-Model of Koala, `q4_0`-quantized, requires approx. 5 GB of RAM.
+
+## Supported Models
+
+- [🐨 Koala](https://bair.berkeley.edu/blog/2023/04/03/koala/)
+- [🦙 Vicuna](https://lmsys.org/blog/2023-03-30-vicuna/)
+
+see `./profiles/`
 
 ## Usage
 
 To use Eucalyptus locally, start both the API-Server (`api-server.py`) and the Frontend-Server (`frontend-server.py`).  
 The default URL of the Frontend-Server is http://localhost:8080.
 
+You have to choose the correct profile for the model you use. See [Supported Models](#supported-models) and [Frontend Server CLI Argument](#frontend-server-cli-arguments).
+
 ### API Server CLI Arguments
 
 The following command-line arguments are available:
 
 * `-m` or `--model`: Specifies the path to the model file. This is required and must be provided.
-* `--host`: Specifies the address to listen on. By default, it listens on localhost.
-* `--port`: Specifies the port number to listen on. The default value is 7331.
+* `--host`: Specifies the address to listen on. By default, it listens on `localhost`.
+* `--port`: Specifies the port number to listen on. The default value is `7331`.
 
 ```bash
 python3 api-server.py [-h] -m MODEL [--host HOST] [--port PORT]
@@ -33,12 +42,13 @@ python3 api-server.py [-h] -m MODEL [--host HOST] [--port PORT]
 
 The following command-line options are available:
 
-* `--host`: Specifies the IP address or hostname to listen on. Defaults to "localhost".
-* `--port`: Specifies the port number to listen on. Defaults to 8080.
-* `--api`: Specifies the URL of the API server. Defaults to http://localhost:7331.
+* `--profile`: Path to the profile file for the model. Defaults to `./profiles/koala.json`.
+* `--host`: Specifies the IP address or hostname to listen on. Defaults to `localhost`.
+* `--port`: Specifies the port number to listen on. Defaults to `8080`.
+* `--api`: Specifies the URL of the API server. Defaults to `http://localhost:7331`.
 
 ```bash
-python3 frontend-server.py [-h] [--host HOST] [--port PORT] [--api API]
+python3 frontend-server.py [-h] [--profile PROFILE] [--host HOST] [--port PORT] [--api API]
 ```
 
 ## Third-Party Licenses
