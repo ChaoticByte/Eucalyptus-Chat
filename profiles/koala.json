@@ -1,0 +1,7 @@
+{
+    "name": "Koala",
+    "conversation_prefix": "BEGINNING OF CONVERSATION: ",
+    "user_keyword": "USER:",
+    "assistant_keyword": "GPT:",
+    "stop_sequence": "</s>"
+}

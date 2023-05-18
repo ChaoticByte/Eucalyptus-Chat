@@ -1,27 +1,17 @@
 // Copyright (c) 2023 Julian Müller (ChaoticByte)
 
-(() => {
+// Fetch configuration and initialize Eucalyptus Chat Frontend
 
-    // Koala specific keywords
-    const conversationBeginning = "BEGINNING OF CONVERSATION:";
-    const userKeyword = " USER: ";
-    const assistantKeyword = " GPT:";
-    const koalaStopSequence = "</s>";
-
-    // Get frontend config
-    let frontend_config = null;
-    fetch("/config")
-        .then(r => {
-            return r.json();
-        })
-        .then(j => {
-            frontend_config = j;
-        });
+fetch("/config")
+.then(r => {
+    return r.json();
+}).then(frontend_config => {
 
     // Message Context
-    let conversation = [conversationBeginning];
+    let conversation = [frontend_config.profile.conversation_prefix];
 
     // Elements - Sidebar
+    const settingsLabelAssistantNameElement = document.getElementById("settings-label-assistant");
     const settingsMaxTokensElement = document.getElementById("settings-max-tokens");
     const settingsTemperatureElement = document.getElementById("settings-temperature");
     const settingsTopPElement = document.getElementById("settings-top-p");
@@ -31,6 +21,8 @@
     const settingsFrequencyPenaltyElement = document.getElementById("settings-frequency-penalty");
     const resetSettingsButtonElement = document.getElementById("reset-settings-btn");
     const resetHistoryButtonElement = document.getElementById("reset-history-btn");
+
+    settingsLabelAssistantNameElement.innerText = frontend_config.profile.name;
 
     // Elements - Main
     const messageHistoryContainer = document.getElementById("messages");
@@ -42,7 +34,7 @@
     async function apiCompletion(prompt, settings) {
         const bodyData = JSON.stringify({
             "prompt": prompt,
-            "stop": [koalaStopSequence],
+            "stop": [frontend_config.profile.stop_sequence],
             "max_tokens": settings.max_tokens,
             "temperature": settings.temperature,
             "top_p": settings.top_p,
@@ -99,33 +91,36 @@
 
     // Chat
 
-    const MessageType = {
+    // Message Roles
+    const Roles = {
         USER: {
             name: "User",
             class: "message-bg-user"
         },
         ASSISTANT: {
-            name: "Koala",
+            name: frontend_config.profile.name,
             class: "message-bg-assistant"
         }
     }
 
-    function addMessage(message, type) {
-        if (type == MessageType.USER) {
-            conversation.push(userKeyword + message + assistantKeyword);
+    function addMessage(message, role) {
+        if (role == Roles.USER) {
+            conversation.push(
+                " " + frontend_config.profile.user_keyword + " "
+                + message + " " + frontend_config.profile.assistant_keyword);
         }
         else { conversation.push(message); }
         // UI
-        let messageTypeElem = document.createElement("div");
-        messageTypeElem.classList.add("message-type");
-        messageTypeElem.innerText = type.name;
+        let messageRoleElem = document.createElement("div");
+        messageRoleElem.classList.add("message-type");
+        messageRoleElem.innerText = role.name;
         let messageTextElem = document.createElement("div");
         messageTextElem.classList.add("message-text");
         messageTextElem.innerText = message;
         let messageElem = document.createElement("div");
         messageElem.classList.add("message");
-        messageElem.classList.add(type.class);
-        messageElem.appendChild(messageTypeElem);
+        messageElem.classList.add(role.class);
+        messageElem.appendChild(messageRoleElem);
         messageElem.appendChild(messageTextElem);
         messageHistoryContainer.appendChild(messageElem);
         messageHistoryContainer.scrollTo(0, messageHistoryContainer.scrollHeight);
@@ -169,31 +164,26 @@
     }
 
     async function chat() {
-        if (frontend_config == null) {
-            console.log("Couldn't fetch frontend configuration.");
+        disableInput();
+        let input = textInputElement.value.trim();
+        if (input == "") {
+            enableInput();
         }
         else {
-            disableInput();
-            let input = textInputElement.value.trim();
-            if (input == "") {
+            textInputElement.value = "";
+            resizeInputElement();
+            addMessage(input, Roles.USER);
+            let prompt = conversation.join("");
+            let settings = getSettings();
+            apiCompletion(prompt, settings).then(r => {
+                addMessage(r, Roles.ASSISTANT);
                 enableInput();
-            }
-            else {
-                textInputElement.value = "";
-                resizeInputElement();
-                addMessage(input, MessageType.USER);
-                let prompt = conversation.join("");
-                let settings = getSettings();
-                apiCompletion(prompt, settings).then(r => {
-                    addMessage(r, MessageType.ASSISTANT);
-                    enableInput();
-                });
-            }
+            });
         }
     }
 
     function resetHistory() {
-        conversation = [conversationBeginning];
+        conversation = [frontend_config.profile.conversation_prefix];
         messageHistoryContainer.innerText = "";
     }
 
@@ -213,4 +203,4 @@
     textInputElement.addEventListener("input", resizeInputElement);
     resizeInputElement();
 
-})();
+});
