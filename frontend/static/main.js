@@ -183,5 +183,6 @@
     });
 
     textInputElement.addEventListener("input", resizeInputElement);
+    resizeInputElement();
 
 })();

@@ -10,7 +10,6 @@
     --icon-button-fill: #ffffff;
     --send-icon-button-fill: #29c76d;
     --color: #fafafa;
-    --padding: .5rem;
     --border-radius: .5rem;
 }
 
@@ -21,16 +20,15 @@ body {
     color: var(--color);
     font-family: sans-serif;
     flex-direction: row;
-    min-height: 100vh;
+    height: 100vh;
 }
-
 
 input[type="number"] {
     width: 4rem;
 }
 
 .sidepanel {
-    gap: var(--padding);
+    gap: .5rem;
     align-items: flex-end;
     padding: 1rem;
     padding-left: 0;
@@ -59,7 +57,7 @@ input[type="number"] {
 
 .messages {
     gap: 1.1rem;
-    padding-bottom: var(--padding);
+    margin-bottom: 1rem;
     overflow-y: scroll;
     max-height: 89vh;
 }
@@ -67,8 +65,8 @@ input[type="number"] {
 .message {
     display: flex;
     flex-direction: row;
-    gap: var(--padding);
-    padding: var(--padding);
+    gap: .5rem;
+    padding: .5rem;
     border-radius: var(--border-radius);
     max-width: fit-content;
 }
@@ -149,7 +147,7 @@ button:hover {
 }
 
 .icon-button > svg {
-    height: 1.8rem;
+    height: 1.5rem;
     width: auto;
     fill: var(--icon-button-fill);
 }
