@@ -25,7 +25,7 @@ if __name__ == "__main__":
     assert "conversation_prefix" in profile
     assert "user_keyword" in profile
     assert "assistant_keyword" in profile
-    assert "stop_sequence" in profile
+    assert "stop_sequences" in profile
     # Pass frontend config to the app
     app.config.frontend_config = {
         "api_url": args.api.rstrip("/"),
@@ -34,7 +34,7 @@ if __name__ == "__main__":
             "conversation_prefix": profile["conversation_prefix"],
             "user_keyword": profile["user_keyword"],
             "assistant_keyword": profile["assistant_keyword"],
-            "stop_sequence": profile["stop_sequence"]
+            "stop_sequences": profile["stop_sequences"]
         }
     }
     # Run

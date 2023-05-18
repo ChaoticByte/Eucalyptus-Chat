@@ -34,7 +34,7 @@ fetch("/config")
     async function apiCompletion(prompt, settings) {
         const bodyData = JSON.stringify({
             "prompt": prompt,
-            "stop": [frontend_config.profile.stop_sequence],
+            "stop": frontend_config.profile.stop_sequences,
             "max_tokens": settings.max_tokens,
             "temperature": settings.temperature,
             "top_p": settings.top_p,
