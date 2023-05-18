@@ -1,5 +1,7 @@
 // Copyright (c) 2023 Julian Müller (ChaoticByte)
 
+const isMobile = /Android|BlackBerry|iPhone|iPod|Opera Mini/i.test(navigator.userAgent);
+
 // Fetch configuration and initialize Eucalyptus Chat Frontend
 
 fetch("/config")
@@ -11,6 +13,9 @@ fetch("/config")
     let conversation = [frontend_config.profile.conversation_prefix];
 
     // Elements - Sidebar
+    const sidebarOpenButton = document.getElementById("sidebar-toggle-open");
+    const sidebarCloseButton = document.getElementById("sidebar-toggle-close");
+    const sidebarContainer = document.getElementById("sidebar-container");
     const settingsLabelAssistantNameElement = document.getElementById("settings-label-assistant");
     const settingsMaxTokensElement = document.getElementById("settings-max-tokens");
     const settingsTemperatureElement = document.getElementById("settings-temperature");
@@ -19,15 +24,15 @@ fetch("/config")
     const settingsRepeatPenaltyElement = document.getElementById("settings-repeat-penalty");
     const settingsPresencePenaltyElement = document.getElementById("settings-presence-penalty");
     const settingsFrequencyPenaltyElement = document.getElementById("settings-frequency-penalty");
-    const resetSettingsButtonElement = document.getElementById("reset-settings-btn");
-    const resetHistoryButtonElement = document.getElementById("reset-history-btn");
+    const resetSettingsButton = document.getElementById("reset-settings-btn");
+    const resetHistoryButton = document.getElementById("reset-history-btn");
 
     settingsLabelAssistantNameElement.innerText = frontend_config.profile.name;
 
     // Elements - Main
     const messageHistoryContainer = document.getElementById("messages");
     const textInputElement = document.getElementById("text-input");
-    const sendButtonElement = document.getElementById("send-btn");
+    const sendButton = document.getElementById("send-btn");
 
     // API requests
 
@@ -116,7 +121,7 @@ fetch("/config")
         messageRoleElem.innerText = role.name;
         let messageTextElem = document.createElement("div");
         messageTextElem.classList.add("message-text");
-        messageTextElem.innerText = message;
+        messageTextElem.innerText = message.trim();
         let messageElem = document.createElement("div");
         messageElem.classList.add("message");
         messageElem.classList.add(role.class);
@@ -141,9 +146,9 @@ fetch("/config")
         settingsRepeatPenaltyElement.disabled = true;
         settingsPresencePenaltyElement.disabled = true;
         settingsFrequencyPenaltyElement.disabled = true;
-        resetSettingsButtonElement.disabled = true;
-        resetHistoryButtonElement.disabled = true;
-        sendButtonElement.disabled = true;
+        resetSettingsButton.disabled = true;
+        resetHistoryButton.disabled = true;
+        sendButton.disabled = true;
         textInputElement.disabled = true;
     }
 
@@ -155,12 +160,12 @@ fetch("/config")
         settingsRepeatPenaltyElement.disabled = false;
         settingsPresencePenaltyElement.disabled = false;
         settingsFrequencyPenaltyElement.disabled = false;
-        resetSettingsButtonElement.disabled = false;
-        resetHistoryButtonElement.disabled = false;
-        sendButtonElement.disabled = false;
+        resetSettingsButton.disabled = false;
+        resetHistoryButton.disabled = false;
+        sendButton.disabled = false;
         textInputElement.disabled = false;
         // focus text input
-        textInputElement.focus();
+        if (!isMobile) textInputElement.focus();
     }
 
     async function chat() {
@@ -187,11 +192,29 @@ fetch("/config")
         messageHistoryContainer.innerText = "";
     }
 
+    // Sidebar
+
+    function toggleSidebar() {
+        if (sidebarContainer.classList.contains("sidebar-hidden")) {
+            sidebarCloseButton.classList.remove("hidden");
+            sidebarOpenButton.classList.add("hidden");
+            sidebarContainer.classList.remove("sidebar-hidden");
+        }
+        else {
+            sidebarOpenButton.classList.remove("hidden");
+            sidebarCloseButton.classList.add("hidden");
+            sidebarContainer.classList.add("sidebar-hidden");
+        }
+    }
+
     // Event Listeners
 
-    resetSettingsButtonElement.addEventListener("click", resetSettings);
-    resetHistoryButtonElement.addEventListener("click", resetHistory);
-    sendButtonElement.addEventListener("click", chat);
+    sidebarOpenButton.addEventListener("click", toggleSidebar);
+    sidebarCloseButton.addEventListener("click", toggleSidebar);
+
+    resetSettingsButton.addEventListener("click", resetSettings);
+    resetHistoryButton.addEventListener("click", resetHistory);
+    sendButton.addEventListener("click", chat);
 
     textInputElement.addEventListener("keypress", e => {
         // Send via Ctrl+Enter

@@ -5,6 +5,7 @@
     --background2: #303030;
     --background3: #161616;
     --background4: #131313;
+    --background5: #1a1a1a;
     --button-bg: #3b3b3b;
     --button-bg2: #4f4f4f;
     --icon-button-fill: #ffffff;
@@ -27,11 +28,23 @@ input[type="number"] {
     width: 4rem;
 }
 
-.sidepanel {
+.sidebar-container {
+    padding: .5rem;
+    height: 100%;
+    background-color: var(--background5);
+    box-sizing: border-box;
+}
+
+.sidebar-container.sidebar-hidden > .sidebar {
+    display: none;
+}
+
+.sidebar {
+    margin-left: .5rem;
+    margin-right: .5rem;
+    margin-top: .4rem;
     gap: .5rem;
     align-items: flex-end;
-    padding: 1rem;
-    padding-left: 0;
     min-width: fit-content;
 }
 
@@ -135,6 +148,8 @@ button:hover {
 }
 
 .icon-button {
+    width: fit-content;
+    height: fit-content;
     padding: .2rem;
     display: flex;
     align-items: center;
@@ -159,4 +174,40 @@ button:hover {
 .send-btn > svg {
     height: 2.2rem;
     fill: var(--send-icon-button-fill);
+}
+
+.hidden {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+
+    body {
+        height: 100dvh;
+    }
+
+    .sidebar-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .sidebar-container.sidebar-hidden {
+        position: absolute;
+        width: unset;
+        height: unset;
+        left: auto;
+        right: 0;
+        background: transparent;
+    }
+
+    .sidebar-container > #sidebar-toggle-close {
+        margin-right: auto;
+    }
+
+    .sidebar {
+        margin-right: auto;
+        padding-right: 2.5rem;
+    }
 }

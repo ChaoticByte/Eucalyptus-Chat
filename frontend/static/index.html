@@ -18,49 +18,57 @@
             </button>
         </div>
     </div>
-    <div class="sidepanel flex flex-column">
-        <div class="max-width">Settings</div>
-        <div class="settings flex flex-column">
-            <div class="setting flex">
-                <div>Assistant</div>
-                <div id="settings-label-assistant"></div>
+    <div class="flex sidebar-container sidebar-hidden" id="sidebar-container">
+        <button id="sidebar-toggle-open" class="icon-button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="M433 712V440L297 576l136 136ZM180 936q-24.75 0-42.375-17.625T120 876V276q0-24.75 17.625-42.375T180 216h600q24.75 0 42.375 17.625T840 276v600q0 24.75-17.625 42.375T780 936H180Zm393-60V276H180v600h393Z"/></svg>
+        </button>
+        <button id="sidebar-toggle-close" class="icon-button hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="M297 440v272l136-136-136-136ZM180 936q-24.75 0-42.375-17.625T120 876V276q0-24.75 17.625-42.375T180 216h600q24.75 0 42.375 17.625T840 276v600q0 24.75-17.625 42.375T780 936H180Zm393-60V276H180v600h393Z"/></svg>
+        </button>
+        <div class="sidebar flex flex-column">
+            <div class="max-width">Settings</div>
+            <div class="settings flex flex-column">
+                <div class="setting flex">
+                    <div>Assistant</div>
+                    <div id="settings-label-assistant"></div>
+                </div>
+                <div class="setting flex">
+                    <div>max_tokens</div>
+                    <div><input type="number" id="settings-max-tokens" min="16" value="100"></div>
+                </div>
+                <div class="setting flex">
+                    <div>temperature</div>
+                    <div><input type="number" id="settings-temperature" min="0.0" max="2.0" step="0.01" value="0.8"></div>
+                </div>
+                <div class="setting flex">
+                    <div>top_p</div>
+                    <div><input type="number" id="settings-top-p" min="0.0" max="1.0" step="0.01" value="0.95"></div>
+                </div>
+                <div class="setting flex">
+                    <div>top_k</div>
+                    <div><input type="number" id="settings-top-k" min="0" step="1" value="40"></div>
+                </div>
+                <div class="setting flex">
+                    <div>repeat_penalty</div>
+                    <div><input type="number" id="settings-repeat-penalty" min="0.0" step="0.01" value="1.1"></div>
+                </div>
+                <div class="setting flex">
+                    <div>presence_penalty</div>
+                    <div><input type="number" id="settings-presence-penalty" min="-2.0" max="2.0" step="0.01" value="0"></div>
+                </div>
+                <div class="setting flex">
+                    <div>frequency_penalty</div>
+                    <div><input type="number" id="settings-frequency-penalty" min="-2.0" max="2.0" step="0.01" value="0"></div>
+                </div>
             </div>
-            <div class="setting flex">
-                <div>max_tokens</div>
-                <div><input type="number" id="settings-max-tokens" min="16" value="100"></div>
+            <div class="flex">
+                <button id="reset-settings-btn" class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="M480 896q-133 0-226.5-93.5T160 576q0-133 93.5-226.5T480 256q85 0 149 34.5T740 385V256h60v254H546v-60h168q-38-60-97-97t-137-37q-109 0-184.5 75.5T220 576q0 109 75.5 184.5T480 836q83 0 152-47.5T728 663h62q-29 105-115 169t-195 64Z"/></svg>
+                </button>
+                <button id="reset-history-btn" class="icon-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="m361 757 119-121 120 121 47-48-119-121 119-121-47-48-120 121-119-121-48 48 120 121-120 121 48 48ZM261 936q-24 0-42-18t-18-42V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Z"/></svg>
+                </button>
             </div>
-            <div class="setting flex">
-                <div>temperature</div>
-                <div><input type="number" id="settings-temperature" min="0.0" max="2.0" step="0.01" value="0.8"></div>
-            </div>
-            <div class="setting flex">
-                <div>top_p</div>
-                <div><input type="number" id="settings-top-p" min="0.0" max="1.0" step="0.01" value="0.95"></div>
-            </div>
-            <div class="setting flex">
-                <div>top_k</div>
-                <div><input type="number" id="settings-top-k" min="0" step="1" value="40"></div>
-            </div>
-            <div class="setting flex">
-                <div>repeat_penalty</div>
-                <div><input type="number" id="settings-repeat-penalty" min="0.0" step="0.01" value="1.1"></div>
-            </div>
-            <div class="setting flex">
-                <div>presence_penalty</div>
-                <div><input type="number" id="settings-presence-penalty" min="-2.0" max="2.0" step="0.01" value="0"></div>
-            </div>
-            <div class="setting flex">
-                <div>frequency_penalty</div>
-                <div><input type="number" id="settings-frequency-penalty" min="-2.0" max="2.0" step="0.01" value="0"></div>
-            </div>
-        </div>
-        <div class="flex">
-            <button id="reset-settings-btn" class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="M480 896q-133 0-226.5-93.5T160 576q0-133 93.5-226.5T480 256q85 0 149 34.5T740 385V256h60v254H546v-60h168q-38-60-97-97t-137-37q-109 0-184.5 75.5T220 576q0 109 75.5 184.5T480 836q83 0 152-47.5T728 663h62q-29 105-115 169t-195 64Z"/></svg>
-            </button>
-            <button id="reset-history-btn" class="icon-button">
-                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 96 960 960" width="48"><path d="m361 757 119-121 120 121 47-48-119-121 119-121-47-48-120 121-119-121-48 48 120 121-120 121 48 48ZM261 936q-24 0-42-18t-18-42V306h-41v-60h188v-30h264v30h188v60h-41v570q0 24-18 42t-42 18H261Z"/></svg>
-            </button>
         </div>
     </div>
     <script src="/ui/main.js"></script>
