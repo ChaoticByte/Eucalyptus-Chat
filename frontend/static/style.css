@@ -82,6 +82,7 @@ input[type="number"] {
     padding: .5rem;
     border-radius: var(--border-radius);
     max-width: fit-content;
+    white-space: pre-wrap;
 }
 
 button {
