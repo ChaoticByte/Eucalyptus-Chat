@@ -10,7 +10,7 @@ A frontend for large language models like [🐨 Koala](https://bair.berkeley.edu
 - The pip packages listed in `requirements.txt`
 - A Koala model in the ggml format (should be quantized)
 
-The 7B-Model of Koala, `q4_0`-quantized, requires approx. 5 GB of RAM.
+For memory and disk requirements for the different models, see [llama.cpp - Memory/Disk Requirements](https://github.com/ggerganov/llama.cpp#memorydisk-requirements)
 
 ## Supported Models
 
