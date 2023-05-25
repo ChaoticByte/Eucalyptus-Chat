@@ -4,6 +4,8 @@
 from argparse import ArgumentParser
 from os import environ
 
+from llama_cpp.server.app import create_app
+
 import uvicorn
 
 if __name__ == "__main__":
@@ -13,10 +15,7 @@ if __name__ == "__main__":
     ap.add_argument("--host", help="Address to listen on (default: localhost)", type=str, default="localhost")
     ap.add_argument("--port", help="Port to listen on (default: 7331)", type=int, default=7331)
     args = ap.parse_args()
-    # Set environment variable before importing api server
     environ["MODEL"] = args.model
-    # Import api server
-    from llama_cpp.server.app import create_app
     # Run
     app = create_app()
     uvicorn.run(app, host=args.host, port=args.port)
