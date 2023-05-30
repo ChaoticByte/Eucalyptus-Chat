@@ -42,7 +42,7 @@ python3 api-server.py [-h] -m MODEL [--host HOST] [--port PORT]
 
 The following command-line options are available:
 
-* `--profile`: Path to the profile file for the model. Defaults to `./profiles/koala.json`.
+* `--profile`: Path to the profile file for the model.
 * `--host`: Specifies the IP address or hostname to listen on. Defaults to `localhost`.
 * `--port`: Specifies the port number to listen on. Defaults to `8080`.
 * `--api`: Specifies the URL of the API server. Defaults to `http://localhost:7331`.
