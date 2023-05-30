@@ -1,0 +1,8 @@
+{
+    "name": "None",
+    "conversation_prefix": "",
+    "user_keyword": "",
+    "assistant_keyword": "",
+    "separator": "",
+    "stop_sequences": []
+}
