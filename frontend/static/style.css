@@ -11,6 +11,7 @@
     --icon-button-fill: #ffffff;
     --send-icon-button-fill: #29c76d;
     --color: #fafafa;
+    --color2: #bbbbbb;
     --border-radius: .5rem;
 }
 
@@ -69,20 +70,38 @@ input[type="number"] {
 }
 
 .messages {
-    gap: 1.1rem;
+    gap: 1rem;
     margin-bottom: 1rem;
     overflow-y: scroll;
     max-height: 89vh;
+    align-items: center;
+    flex-grow: 2;
 }
 
 .message {
     display: flex;
-    flex-direction: row;
-    gap: .5rem;
-    padding: .5rem;
-    border-radius: var(--border-radius);
-    max-width: fit-content;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.message-type {
+    color: var(--color2);
+    text-align: center;
+}
+
+.message-text {
     white-space: pre-wrap;
+    padding: .5rem .8rem;
+    border-radius: var(--border-radius);
+}
+
+.message-bg-assistant > .message-text {
+    background: var(--background2);
+}
+
+.message-bg-user > .message-text {
+    background: var(--background3);
 }
 
 button {
@@ -113,19 +132,6 @@ button:hover {
 
 .max-width {
     width: 100%;
-}
-
-.message-bg-assistant {
-    background: var(--background2);
-}
-
-.message-bg-user {
-    background: var(--background3);
-}
-
-.message-type {
-    min-width: 3.5rem;
-    padding-left: .1rem;
 }
 
 .input-container {

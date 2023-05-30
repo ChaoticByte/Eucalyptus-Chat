@@ -1,5 +1,5 @@
 {
-    "name": "Vicuna",
+    "name": "Vicuna v1.1",
     "conversation_prefix": "A chat between a curious user and a helpful AI assistant.\n\n",
     "user_keyword": "USER:",
     "assistant_keyword": "ASSISTANT:",
