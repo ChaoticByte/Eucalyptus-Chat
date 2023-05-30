@@ -15,9 +15,10 @@ For memory and disk requirements for the different models, see [llama.cpp - Memo
 ## Supported Models
 
 - [🐨 Koala](https://bair.berkeley.edu/blog/2023/04/03/koala/)
-- [🦙 Vicuna v0](https://lmsys.org/blog/2023-03-30-vicuna/)
+- [🦙 Vicuna v.0](https://lmsys.org/blog/2023-03-30-vicuna/)
+- [🦙 Vicuna v.1.1](https://lmsys.org/blog/2023-03-30-vicuna/)
 
-see `./profiles/`
+(see `./profiles/`)
 
 ## Usage
 

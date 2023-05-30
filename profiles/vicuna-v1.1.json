@@ -1,0 +1,8 @@
+{
+    "name": "Vicuna",
+    "conversation_prefix": "A chat between a curious user and a helpful AI assistant.\n\n",
+    "user_keyword": "USER:",
+    "assistant_keyword": "ASSISTANT:",
+    "separator": "\n",
+    "stop_sequences": ["</s>"]
+}
