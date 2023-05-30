@@ -8,7 +8,7 @@ A frontend for large language models like [🐨 Koala](https://bair.berkeley.edu
 
 - Python 3.10
 - The pip packages listed in `requirements.txt`
-- A Koala model in the ggml format (should be quantized)
+- An AI model in the ggml format (should be quantized)
 
 For memory and disk requirements for the different models, see [llama.cpp - Memory/Disk Requirements](https://github.com/ggerganov/llama.cpp#memorydisk-requirements)
 
