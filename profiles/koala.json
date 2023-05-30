@@ -3,5 +3,6 @@
     "conversation_prefix": "BEGINNING OF CONVERSATION: ",
     "user_keyword": "USER:",
     "assistant_keyword": "GPT:",
+    "separator": " ",
     "stop_sequences": ["</s>"]
 }

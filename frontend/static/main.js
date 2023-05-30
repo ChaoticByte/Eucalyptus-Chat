@@ -111,10 +111,10 @@ fetch("/config")
     function addMessage(message, role) {
         if (role == Roles.USER) {
             conversation.push(
-                " " + frontend_config.profile.user_keyword + " "
-                + message + " " + frontend_config.profile.assistant_keyword);
+                frontend_config.profile.user_keyword + " "
+                + message + frontend_config.profile.separator + frontend_config.profile.assistant_keyword);
         }
-        else { conversation.push(message); }
+        else { conversation.push(message + frontend_config.profile.separator); }
         // UI
         let messageRoleElem = document.createElement("div");
         messageRoleElem.classList.add("message-type");
@@ -181,7 +181,7 @@ fetch("/config")
             let prompt = conversation.join("");
             let settings = getSettings();
             apiCompletion(prompt, settings).then(r => {
-                addMessage(r, Roles.ASSISTANT);
+                addMessage(r.trim(), Roles.ASSISTANT);
                 enableInput();
             });
         }

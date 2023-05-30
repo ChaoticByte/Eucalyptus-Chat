@@ -9,10 +9,9 @@ import uvicorn
 from frontend.app import app
 
 if __name__ == "__main__":
-    koala_profile_path = Path(__file__).parent / "profiles" / "koala.json"
     # CLI
     ap = ArgumentParser()
-    ap.add_argument("--profile", help="Path to a profile file that includes settings for a specific model (default: ./profiles/koala.json)", type=Path, default=koala_profile_path)
+    ap.add_argument("--profile", help="Path to a profile file that includes settings for a specific model", type=Path, required=True)
     ap.add_argument("--host", help="Address to listen on (default: localhost)", type=str, default="localhost")
     ap.add_argument("--port", help="Port to listen on (default: 8080)", type=int, default=8080)
     ap.add_argument("--api", help="URL of the API Server (default: 'http://localhost:7331')", type=str, default="http://localhost:7331")
@@ -34,6 +33,7 @@ if __name__ == "__main__":
             "conversation_prefix": profile["conversation_prefix"],
             "user_keyword": profile["user_keyword"],
             "assistant_keyword": profile["assistant_keyword"],
+            "separator": profile["separator"],
             "stop_sequences": profile["stop_sequences"]
         }
     }
