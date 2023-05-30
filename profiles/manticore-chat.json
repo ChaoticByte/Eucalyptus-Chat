@@ -1,0 +1,8 @@
+{
+    "name": "Manticore",
+    "conversation_prefix": "",
+    "user_keyword": "USER:",
+    "assistant_keyword": "ASSISTANT:",
+    "separator": "\n",
+    "stop_sequences": ["</s>", "<unk>", "### USER:", "USER:"]
+}
